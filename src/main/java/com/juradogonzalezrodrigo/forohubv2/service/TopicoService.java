@@ -150,7 +150,7 @@ public class TopicoService {
 
         Topico topico = topicoRepository.findById((long) id).orElseThrow(()
                 -> new CustomException("El tópico con ese id no existe", HttpStatus.NOT_FOUND));
-        topicoRepository.delete(topico);
+        topicoRepository.deleteById((long) topico.getId());
 
     }
 
