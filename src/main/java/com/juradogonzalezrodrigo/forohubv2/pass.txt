@@ -1,0 +1,13 @@
+
+
+
+
+
+Juan:    securedPasswordForTestsJuan
+$2a$10$7vF58kNXx9cMLRJIjQZTk.rF0OfeDR1RHXs77ZcIc3AzZJTnMU2ey
+
+Enrique:  passProyectoPruebaEnrique
+$2a$10$ATh4EiyMyufvTkR7kI8ikeVobrBro2wx6ms0zM/WQLZBTFlm7rani
+
+Rodrigo:  superpassRodrigo
+$2a$10$KXk71VAn0DHUr/ok1dbLCubD4.8ICQsleh0CcvSwzUi7i5cJYWdjG
