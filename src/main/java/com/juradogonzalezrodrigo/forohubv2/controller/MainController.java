@@ -57,16 +57,19 @@ public class MainController {
 
     }
 
-    @PutMapping("/topicos")
-    public String updateTopico() {
-
-        return "Tópico actualizado";
+    @Transactional
+    @PutMapping("/topicos/{id}")
+    public ResponseEntity<GetTopicoResponseDTO> updateTopico(@PathVariable int id, @Valid @RequestBody UpdateTopicoRequestDTO updateTopicoRequestDTO) {
+        // Igualmente como en el post, misma respuesta con el objeto actualizado con status 200
+        GetTopicoResponseDTO updatedTopico = topicoService.updateTopico(id, updateTopicoRequestDTO);
+        return ResponseEntity.ok(updatedTopico);
     }
 
-    @DeleteMapping("/topicos")
-    public String deleteTopico() {
-
-        return "Tópico eliminado";
+    @Transactional
+    @DeleteMapping("/topicos/{id}")
+    public ResponseEntity<Void> deleteTopico(@PathVariable int id) {
+        topicoService.deleteTopico(id);
+        return ResponseEntity.noContent().build();
     }
 
 
