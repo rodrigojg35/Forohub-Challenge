@@ -39,6 +39,7 @@ public class MainController {
     public ResponseEntity<LoginResponseDTO> authenticate(@Valid @RequestBody LoginRequestDTO loginUserDto) {
 
         Usuario authenticatedUser = authenticationService.authenticate(loginUserDto);
+        System.out.println("Usuario autenticado, generando token");
         String jwtToken = jwtService.generateToken(User.builder()
                 .username(authenticatedUser.getEmail())
                 .password(authenticatedUser.getPassword())

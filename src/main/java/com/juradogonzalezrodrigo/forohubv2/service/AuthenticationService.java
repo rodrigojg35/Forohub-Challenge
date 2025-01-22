@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,14 +39,21 @@ public class AuthenticationService {
             throw new
                     CustomException("El usuario con ese email no existe", HttpStatus.NOT_FOUND);
         }
+        System.out.println("Usuario encontrado, vamos a autenticar");
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        datosLogin.getEmail(),
-                        datosLogin.getPassword()
-                )
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            datosLogin.getEmail(),
+                            datosLogin.getPassword()
+                    )
+            );
+        } catch (AuthenticationException e) {
+            throw new CustomException("Credenciales incorrectas", HttpStatus.UNAUTHORIZED);
+        }
 
+
+        System.out.println("Usuario autenticado");
         return user.get();
     }
 }
