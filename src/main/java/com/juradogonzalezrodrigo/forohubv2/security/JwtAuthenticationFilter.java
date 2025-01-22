@@ -76,11 +76,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 }
             }
 
-
             filterChain.doFilter(request, response);
+
         } catch (Exception exception) {
             System.out.println("Ha ocurrido un error al validar el token");
-            throw new CustomException("Ha ocurrido un error al validar el token", HttpStatus.UNAUTHORIZED);
+            handlerExceptionResolver.resolveException(request, response, null, new CustomException("Ha ocurrido un error al validar el token", HttpStatus.UNAUTHORIZED));
         }
     }
 }
